@@ -1,35 +1,76 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useRef } from "react";
+import html2canvas from "html2canvas";
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  //For cCurrent Date
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+
+  //For ScreenShot
+  const pageRef = useRef();
+
+  const handleCaptureClick = async () => {
+    const element = pageRef.current;
+    const canvas = await html2canvas(element);
+    const dataUrl = canvas.toDataURL("image/png");
+
+    // Download the screenshot automatically
+    const link = document.createElement("a");
+    link.href = dataUrl;
+    link.download = "screenshot.png";
+    link.click();
+  };
+
+ 
+ return (
+  <div
+  ref={pageRef}
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",   
+      justifyContent: "flex-start", 
+      width: "100%",         
+      paddingTop: "1vw",     
+      
+    }}
+  >
+    <h1
+      style={{
+        fontWeight: "bold",
+        fontSize: "25px",
+        marginTop: "2px",
+        marginBottom: "2px",
+        textAlign: "center",
+      }}
+    >
+      C2P Decision Matrix Weekly Status Report {" "}
+      <span style={{ fontSize: "18px", fontWeight: "normal" }}>
+        | {formattedDate}
+        </span>
+    </h1>
+    <button
+        onClick={handleCaptureClick}
+        style={{
+          marginTop: "20px",
+          padding: "10px 20px",
+          fontSize: "16px",
+          borderRadius: "8px",
+          cursor: "pointer",
+        }}
+      >
+        📸
+      </button>
+  </div>
+);
+
 }
 
 export default App
