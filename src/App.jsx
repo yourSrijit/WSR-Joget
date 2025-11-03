@@ -3,7 +3,11 @@ import html2canvas from "html2canvas";
 import { FaEdit } from "react-icons/fa";
 import Form from "./components/form";
 import "./App.css";
+
 import SimpleBarChart from "./components/projectCreation";
+import ClientSector from "./components/clientSector";
+
+
 
 function App() {
   const [showForm, setShowForm] = useState(false);
@@ -45,7 +49,7 @@ function App() {
         padding: "5px",
         border: "2px solid black",
         boxSizing: "border-box",
-        backgroundColor: "yellow",
+        backgroundColor: "#1A2A4F",
       }}
     >
       {/* Title */}
@@ -55,7 +59,7 @@ function App() {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "red",
+          backgroundColor: "#FF9013",
         }}
       >
         <h1
@@ -109,12 +113,74 @@ function App() {
           boxSizing: "border-box",
         }}
       >
-        <div
-          style={{ width: "100%", height: "100%", backgroundColor: "#f0f0f0" }}
-        >
-          This is Left
-          <SimpleBarChart />
-        </div>
+
+        {/* Left Div  */}
+      <div
+  style={{
+    display: "flex",
+    flexDirection: "column", 
+    width: "100%",height: "100%",backgroundColor: "#f0f0f0",gap: "10px", // optional spacing between sections
+  }}
+>
+  {/* Left Up */}
+ <div
+  style={{
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    height: "100%",
+  }}
+>
+  <div
+    style={{
+      flex: 1,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#fff",
+      border: "1px solid #ccc",
+    }}
+  >
+    {/* <SimpleBarChart /> */}
+  </div>
+
+  <div
+    style={{
+      flex: 1,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#f5f5f5",
+      border: "1px solid #ccc",
+    }}
+  >
+    <ClientSector/>
+   
+  </div>
+</div>
+
+
+
+  {/* Left Down */}
+  <div
+    style={{
+      display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    height: "100%",
+    }}
+  >
+  <SimpleBarChart />
+  
+  </div>
+
+
+  
+</div>
+
+
+
+        {/* Right Div  */}
 
         <div
           style={{ width: "100%", height: "100%", backgroundColor: "#d0d0d0" }}
@@ -127,3 +193,7 @@ function App() {
 }
 
 export default App;
+
+
+
+
