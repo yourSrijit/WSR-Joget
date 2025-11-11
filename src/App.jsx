@@ -6,6 +6,7 @@ import "./App.css";
 
 import SimpleBarChart from "./components/projectCreation";
 import ClientSector from "./components/clientSector";
+import ProjectStatus from "./components/projectStatus";
 
 
 
@@ -46,10 +47,10 @@ function App() {
         display: "flex",
         flexDirection: "column",
         height: "100vh",
-        padding: "5px",
-        border: "2px solid black",
+        // padding: "5px",
+        border: "1px solid black",
         boxSizing: "border-box",
-        backgroundColor: "#1A2A4F",
+        // backgroundColor: "#1A2A4F",
       }}
     >
       {/* Title */}
@@ -106,7 +107,7 @@ function App() {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "blue",
+          // backgroundColor: "blue",
           width: "full",
           height: "100%",
           margin: "5px",
@@ -131,18 +132,9 @@ function App() {
     height: "100%",
   }}
 >
-  <div
-    style={{
-      flex: 1,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: "#fff",
-      border: "1px solid #ccc",
-    }}
-  >
-    {/* <SimpleBarChart /> */}
-  </div>
+  
+
+
 
   <div
     style={{
@@ -176,24 +168,61 @@ function App() {
 
 
   
-</div>
+      </div>
 
 
 
         {/* Right Div  */}
 
         <div
-          style={{ width: "100%", height: "100%", backgroundColor: "#d0d0d0" }}
-        >
-          This is Right
-        </div>
+        style={{
+          display: "flex",
+          flexDirection: "column", 
+          width: "100%",height: "100%",backgroundColor: "#f1f0f0", border: "1px solid #ccc", // optional spacing between sections
+        }}
+>
+ 
+
+
+  <div
+    style={{
+      flex: 1,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#f5f5f5",
+      border: "1px solid #ccc",
+    }}
+  >
+    <ProjectStatus/>
+   
+  </div>
+
+
+
+
+  {/* Right Down */}
+  <div
+    style={{
+      display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    height: "100%",
+     
+    }}
+  >
+  {/* Markdown text  */}
+  
+  </div>
+
+
+  
+      </div>
       </div>
     </div>
   );
 }
 
 export default App;
-
-
 
 

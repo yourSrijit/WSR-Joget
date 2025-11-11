@@ -1,12 +1,14 @@
 import { create } from 'zustand'
 
 export const useProjectStore = create((set) => ({
-  projectStats: [{ month: 'Jul 25', count: 30},
-  { month: 'Aug 25', count: 54 },
-  { month: 'Sep 25', count: 26 },
-  { month: 'Oct 25', count: 36 },
-  { month: 'Nov 25', count: 41 },
-  { month: 'Dec 25', count: 10 }],
+  projectStats: [
+  { month: 'May 25', count: 2 },
+  { month: 'June 25', count: 4 },
+  { month: 'July 25', count: 5 },
+  { month: 'Aug 25', count: 1 },
+  { month: 'Sep 25', count: 3 },
+  { month: 'Oct 25', count: 1 }
+],
 
   addProject: (month, count) =>
     set((state) => {
@@ -36,6 +38,4 @@ export const useProjectStore = create((set) => ({
 
   resetProjects: () => set({ projectStats: [] }),
 }))
-
-
 

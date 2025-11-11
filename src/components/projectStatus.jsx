@@ -1,20 +1,20 @@
 import { PieChart } from '@mui/x-charts/PieChart';
-import { useClientSectorStore } from '../store/useClientSector';
+import { useProjectStatusStore } from '../store/useProjectStatus';
 
-export default function ClientSector() {
-  const {sectorData} =useClientSectorStore();
+export default function ProjectStatus() {
+  const {statusData} =useProjectStatusStore();
   return (
     <div style={{ width: "100%", height: "100%" }}>
-      Client Sector
+      Project Status
       <PieChart
         series={[
           {
             id: 'client-sector-pie-v1',
-            data:sectorData,
+            data:statusData,
           },
         ]}
-      width={250}
-        height={150}
+      width={220}
+        height={120}
         // ✅ correct legend placement
         slotProps={{
           legend: {

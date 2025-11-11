@@ -13,7 +13,7 @@ export default function SimpleBarChart() {
   return (
     <Box sx={{ width: '90%', height: 300 }}>
       <div style={{ marginBottom: '8px', fontWeight: 'bold', }}>
-        Last 6 months
+        Last 6 months of Project data
       </div>
       <BarChart
         series={[{ data, label: 'No. of Projects', id: 'projectId' }]}
