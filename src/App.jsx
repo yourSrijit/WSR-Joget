@@ -8,6 +8,7 @@ import SimpleBarChart from "./components/projectCreation";
 import ClientSector from "./components/clientSector";
 import ProjectStatus from "./components/projectStatus";
 import ProjectStats from "./components/ProjectStats";
+import MarkdownPreview from "./components/MarkdownPreview";
 
 
 
@@ -237,6 +238,7 @@ function App() {
     }}
   >
   {/* Markdown text  */}
+  < MarkdownPreview/>
   
   </div>
 

@@ -17,7 +17,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useProjectStore } from "../store/useProjectStore.js";
 import { useClientSectorStore } from "../store/useClientSector.js";
 import { useProjectStatusStore } from "../store/useProjectStatus.js";
-import useProjectInfo from "../store/useProjectInfo.js"; // 🆕 Import Project Info store
+import useProjectInfo from "../store/useProjectInfo.js";
+import useMarkdownStore from "../store/useMarkdownStore.js"; // 🆕 Markdown Store
 
 export default function Form({ open, handleClose }) {
   // 🟩 Project Store
@@ -31,6 +32,9 @@ export default function Form({ open, handleClose }) {
 
   // 🟪 Project Info Store
   const { setTotalProjects, setConsultProjects, setConstructProjects } = useProjectInfo();
+
+  // 🟣 Markdown Store
+  const { setMarkdownText } = useMarkdownStore();
 
   // 🟩 Project input
   const [month, setMonth] = useState("");
@@ -48,6 +52,9 @@ export default function Form({ open, handleClose }) {
   const [total, setTotal] = useState("");
   const [consult, setConsult] = useState("");
   const [construct, setConstruct] = useState("");
+
+  // 🟣 Markdown input
+  const [markdownInput, setMarkdownInput] = useState("");
 
   // Handlers
   const handleProjectSubmit = (e) => {
@@ -85,6 +92,13 @@ export default function Form({ open, handleClose }) {
     setConstruct("");
   };
 
+  const handleMarkdownSubmit = (e) => {
+    e.preventDefault();
+    if (!markdownInput.trim()) return;
+    setMarkdownText(markdownInput);
+    setMarkdownInput("");
+  };
+
   return (
     <Dialog open={open} onClose={handleClose} sx={{ zIndex: 1300, "& .MuiDialog-paper": { width: 420 } }}>
       <DialogTitle sx={{ m: 0, p: 2, fontWeight: 600, fontSize: "1.2rem" }}>
@@ -103,7 +117,10 @@ export default function Form({ open, handleClose }) {
         </IconButton>
       </DialogTitle>
 
-      <DialogContent dividers sx={{ display: "flex", flexDirection: "column", gap: 3, bgcolor: "#0d1117" }}>
+      <DialogContent
+        dividers
+        sx={{ display: "flex", flexDirection: "column", gap: 3, bgcolor: "#0d1117" }}
+      >
         {/* 🟩 Project Section */}
         <Box component="form" onSubmit={handleProjectSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           <Typography variant="h6" color="white">📊 Add Project Data</Typography>
@@ -239,6 +256,52 @@ export default function Form({ open, handleClose }) {
             </Button>
           </DialogActions>
         </Box>
+
+        <Divider sx={{ borderColor: "gray" }} />
+
+        {/* 🟣 Markdown Section */}
+        <Box component="form" onSubmit={handleMarkdownSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Typography variant="h6" color="white">📝 Add Markdown Content</Typography>
+
+          <TextField
+            label="Markdown Text"
+            multiline
+            minRows={4}
+            variant="outlined"
+            value={markdownInput}
+            onChange={(e) => setMarkdownInput(e.target.value)}
+            sx={{
+              textarea: { color: "white" },
+              label: { color: "gray" },
+            }}
+          />
+
+          <DialogActions>
+            <Button type="submit" variant="contained" color="info" fullWidth>
+              Save Markdown
+            </Button>
+          </DialogActions>
+        </Box>
+
+        {/* 🪶 Live Preview */}
+        <Typography variant="subtitle1" color="white">Preview:</Typography>
+        <iframe
+          title="Markdown Preview"
+          style={{
+            width: "100%",
+            height: "200px",
+            background: "#1c1c1c",
+            color: "white",
+            border: "1px solid gray",
+            borderRadius: "8px",
+          }}
+          srcDoc={`<html><body style='color:white; font-family:sans-serif; padding:10px;'>${markdownInput
+            .replace(/\n/g, "<br>")
+            .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
+            .replace(/\*(.*?)\*/g, "<i>$1</i>")
+            .replace(/`(.*?)`/g, "<code>$1</code>")
+            }</body></html>`}
+        />
       </DialogContent>
     </Dialog>
   );
